@@ -73,6 +73,8 @@ Open index.html in your browser
 
 💼 LinkedIn: https://linkedin.com/in/vikasreddy6668
 
+🔗 Portfolio: https://vikas-portfolio-sigma-weld.vercel.app
+
 ⭐ Purpose of This Portfolio
 This portfolio is created to:
 Demonstrate SOC Analyst knowledge visually
