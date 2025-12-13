@@ -8,7 +8,7 @@
       name="description"
       content="Cybersecurity portfolio for Vikas Maheshwaram: SOC, IR, SIEM,CrowdStrike, Cloud Security."
     />
-    <!-- <link rel="canonical" href="https://SaiKrishna-Masetti.github.io/" /> -->
+    <!-- <link rel="canonical" href="https://link.github.io/" /> -->
     <meta property="og:type" content="website" />
     <meta
       property="og:title"
@@ -18,7 +18,7 @@
       property="og:description"
       content="SOC, Incident Response, SIEM, and Cloud Security projects and experience."
     />
-    <!-- <meta property="og:url" content="https://SaiKrishna-Masetti.github.io/" /> -->
+    <!-- <meta property="og:url" content="https://link/" /> -->
     <meta property="og:image" content="assets/social-card.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -32,9 +32,6 @@
       content="SOC, Incident Response, SIEM, and Cloud Security projects and experience."
     />
     <meta name="twitter:image" content="assets/social-card.png" />
-    <!-- Optional analytics (Plausible). Replace example.com with your domain, then uncomment.
-  <script defer data-domain="example.com" src="https://plausible.io/js/script.js"></script>
-  -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -110,19 +107,79 @@
             <li>Frameworks: · MITRE ATT&CK · Cyber Kill Chain</li>
           </ul>
         </div>
+        <!-- ATTACK MAP -->
         <div class="hero-right">
-          <div class="stat-card" aria-label="Live stats are illustrative">
-            <div class="stat-number" data-countto="99">0</div>
-            <div class="stat-label">Malicious events filtered</div>
-          </div>
-          <div class="radar">
-            <div class="ring"></div>
-            <div class="ring"></div>
-            <div class="ring"></div>
-            <div class="sweep"></div>
+          <script>
+            const attackMap = document.querySelector(".attack-map");
+            function createAttack(type, severity) {
+              const circle = document.createElement("div");
+              circle.className = `attack-circle ${type} ${severity}`;
+
+              circle.dataset.type = type;
+              circle.dataset.severity = severity;
+
+              circle.style.top = Math.random() * 100 + "%";
+              circle.style.left = Math.random() * 100 + "%";
+
+              attackMap.appendChild(circle);
+              setTimeout(() => circle.remove(), 2500);
+            }
+
+            setInterval(() => {
+              const types = ["ddos", "malware", "phishing", "bruteforce"];
+              const severities = ["low", "medium", "high", "critical"];
+
+              createAttack(
+                types[Math.floor(Math.random() * types.length)],
+                severities[Math.floor(Math.random() * severities.length)]
+              );
+            }, 900);
+
+            // FILTER LOGIC
+            document.querySelectorAll(".filters select").forEach((select) => {
+              select.addEventListener("change", () => {
+                const type = document.getElementById("attackType").value;
+                const severity = document.getElementById("severity").value;
+
+                document
+                  .querySelectorAll(".attack-circle")
+                  .forEach((circle) => {
+                    const matchType =
+                      type === "all" || circle.dataset.type === type;
+                    const matchSeverity =
+                      severity === "all" ||
+                      circle.dataset.severity === severity;
+
+                    circle.style.display =
+                      matchType && matchSeverity ? "block" : "none";
+                  });
+              });
+            });
+          </script>
+          <div class="about-media">
+            <section id="cyber-map">
+              <h2>Live Cyber Attack Map</h2>
+              <p>
+                Real-time visualization of global cyber threats using publicly
+                available threat intelligence data to demonstrate attack
+                patterns, geographic origins, and security awareness.
+              </p>
+              <iframe
+                src="https://cybermap.kaspersky.com/en/widget/dynamic/dark"
+                width="100%"
+                height="330"
+                style="border: 0"
+                loading="lazy"
+                title="Live Cyber Attack Map"
+              >
+              </iframe>
+            </section>
+
+            <!-- <img src="" alt="Linux terminal showing profile info" /> -->
           </div>
         </div>
       </section>
+      <!-- //About section -->
       <section id="about" class="section">
         <h2 class="section-title">About</h2>
         <div class="about-grid">
@@ -141,14 +198,22 @@
               <li>Automation & SOAR Enablement</li>
             </ul>
           </div>
-          <!-- <div class="about-media">
-          <img src="assets/terminal.svg" alt="Linux terminal showing profile info" />
-        </div> -->
+          <div class="stat-card" aria-label="Live stats are illustrative">
+            <div class="stat-number" data-countto="99.99"></div>
+            <div class="stat-label">Malicious events filtered <br /></div>
+            <div class="radar">
+              <div class="ring"></div>
+              <div class="ring"></div>
+              <div class="ring"></div>
+              <div class="sweep"></div>
+            </div>
+          </div>
         </div>
       </section>
+
+      <!-- Experience section -->
       <section id="experience" class="section">
         <h2 class="section-title">Experience</h2>
-
         <article class="exp-card reveal">
           <header>
             <h3>Tata Consultancy Services (TCS) · SOC ANALYST</h3>
@@ -289,12 +354,26 @@
           </article>
         </div>
       </section>
+      <!-- skills section -->
       <section id="skills" class="section">
         <h2 class="section-title">Skills</h2>
         <div class="chip-grid">
           <span class="chip">Splunk</span>
           <span class="chip">IBM QRadar</span>
           <span class="chip">Microsoft Sentinel</span>
+          <span class="chip">ELK Stack</span>
+          <span class="chip">Wireshark</span>
+          <span class="chip">Nessus</span>
+          <span class="chip">Qualys</span>
+          <span class="chip">Metasploit</span>
+          <span class="chip">Cobalt Strike</span>
+          <span class="chip">MITRE ATT&CK</span>
+          <span class="chip">Cyber Kill Chain</span>
+          <span class="chip">Phishing Analysis</span>
+          <span class="chip">Malware Analysis</span>
+          <span class="chip">Incident Response</span>
+          <span class="chip">Threat Hunting</span>
+          <span class="chip">SOAR Automation</span>
           <span class="chip">CrowdStrike Falcon</span>
           <span class="chip">SentinelOne</span>
           <span class="chip">Carbon Black</span>
@@ -320,14 +399,23 @@
           <span class="chip">GDPR</span>
         </div>
       </section>
+
+      <!-- Certifications sections -->
       <section id="certs" class="section">
         <h2 class="section-title">Certifications</h2>
         <ul class="cert-list">
-          <li>CompTIA Security+</li>
-          <li>(ISC)² Certified in Cybersecurity, CC</li>
-          <li>Google Cybersecurity Specialization</li>
-          <li>IBM Security Operations Center in Practice</li>
-          <li>IBM Cybersecurity Fundamentals</li>
+          <li>Certified in Cybersecurity, CC -> (ISC)²</li>
+          <li>SQL Injection Attacks -> (EC - COUNCIL)</li>
+          <li>CompTIA Security+ & CySA+ -> Inprogress</li>
+          <li>Certified Cyber Practitioner -> (Palto Alto Networks)</li>
+          <li>Security Operation Fundamentals -> (Palto Alto Networks)</li>
+          <li>Introduction of Cybersecurity -> (Cisco)</li>
+          <li>Cisco IT Essentials -> (Cisco)</li>
+          <li>Security Operations Center in Practice -> (IBM)</li>
+          <li>Cybersecurity Fundamentals -> (IBM)</li>
+          <li>Splunk Enterprise Security -> (Splunk)</li>
+          <li>Splunk Observability Cloud & SOAR, SOC Essentials -> (Splunk)</li>
+          <li>Detection Engineering -> (Splunk)</li>
         </ul>
       </section>
       <section id="education" class="section">
@@ -354,6 +442,8 @@
           </div>
         </div>
       </section>
+
+      <!-- Contact section -->
       <section id="contact" class="section">
         <h2 class="section-title">Contact</h2>
         <div class="contact-grid">
@@ -373,7 +463,7 @@
         </div>
       </section>
     </main>
-
+    <!-- Footer sections -->
     <footer class="site-footer">
       <div class="container footer-inner">
         <p>© <span id="year"></span> Vikas Reddy Maheshwaram</p>
