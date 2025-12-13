@@ -68,7 +68,9 @@ Open index.html in your browser
 
 
 📫 Contact
+
 📧 Email: vikas.splunk2@gmail.com
+
 💼 LinkedIn: https://linkedin.com/in/vikasreddy6668
 
 ⭐ Purpose of This Portfolio
