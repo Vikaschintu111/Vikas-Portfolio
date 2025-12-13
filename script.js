@@ -1,6 +1,6 @@
 // Utilities
-const $ = (sel, root=document) => root.querySelector(sel);
-const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 
 // Year
 $("#year").textContent = new Date().getFullYear();
@@ -20,24 +20,36 @@ if (toggle) {
 const stat = $(".stat-number");
 if (stat) {
   const target = parseFloat(stat.getAttribute("data-countto") || "100.0");
-  let cur = 0, step = target / 120;
+  let cur = 0,
+    step = target / 120;
   const tick = () => {
     cur = Math.min(cur + step, target);
     stat.textContent = cur.toFixed(2);
     if (cur < target) requestAnimationFrame(tick);
   };
-  const io = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { tick(); io.disconnect(); }
-  }, { threshold: 0.5 });
+  const io = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) {
+        tick();
+        io.disconnect();
+      }
+    },
+    { threshold: 0.5 }
+  );
   io.observe(stat);
 }
 
 // Scroll reveal
 const revealEls = $$(".reveal");
-const io2 = new IntersectionObserver((entries)=>{
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
-}, { threshold: 0.18 });
-revealEls.forEach(el => io2.observe(el));
+const io2 = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add("visible");
+    });
+  },
+  { threshold: 0.18 }
+);
+revealEls.forEach((el) => io2.observe(el));
 
 // Matrix rain background
 (function matrixRain() {

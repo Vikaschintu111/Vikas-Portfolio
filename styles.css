@@ -93,6 +93,20 @@ a:hover {
   height: 28px;
   filter: drop-shadow(0 0 8px rgba(0, 245, 196, 0.4));
 }
+.filters {
+  display: flex;
+  gap: 15px;
+  padding: 15px;
+  background: #0f1624;
+}
+
+.filters select {
+  background: #121b2f;
+  color: #00e5ff;
+  border: 1px solid #1f2a44;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
 
 .main-nav ul {
   display: flex;
@@ -109,6 +123,50 @@ a:hover {
 .main-nav a:hover {
   background: var(--chip);
   text-decoration: none;
+}
+.map-section {
+  background: #0b0f1a;
+  padding: 40px;
+  color: #eaeaea;
+  text-align: center;
+}
+
+.world-map {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 250px;
+  margin: auto;
+  background: url("https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg")
+    center/contain no-repeat;
+}
+
+/* Attack point */
+.attack-point {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.map-note {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #9aa4bf;
 }
 
 .nav-toggle {

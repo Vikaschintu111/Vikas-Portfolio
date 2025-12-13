@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://SaiKrishna-Masetti.github.io/sitemap.xml
+Sitemap: https://linkname.github.io/sitemap.xml 
