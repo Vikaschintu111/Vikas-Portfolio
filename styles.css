@@ -39,7 +39,7 @@ body {
 }
 
 .container {
-  width: min(1200px, 92vw);
+  width: min(1600px, 92vw);
   margin: 0 auto;
 }
 .section {
@@ -223,7 +223,7 @@ a:hover {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 2rem;
   align-items: center;
-  padding-top: 5rem;
+  padding-top: 2rem;
 }
 .hero .lead {
   font-size: clamp(1rem, 0.9rem + 0.6vw, 1.15rem);
