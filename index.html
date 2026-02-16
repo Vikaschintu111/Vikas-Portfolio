@@ -177,14 +177,14 @@
                 div.style.borderRadius = "10px";
                 div.style.boxShadow = "0 0 5px #ffff";
                 div.innerHTML = `
-         <h4 style="margin:0; color: rgb(255,0,0); font-size:18px;">
+         <h4 style="margin:0; color: rgb(255, 255, 255); font-size:18px;">
           ${article.title}
         </h4>
         <p style="font-size:16px; color: rgb(255,255,255);">
           ${new Date(article.pubDate).toLocaleString()}
         </p>
         <a href="${article.link}" target="_blank"
-           style="color:#00ff00; font-size:18px; text-decoration:none;">
+           style="color:#00ffcc ; font-size:18px; text-decoration:none;">
            🔗 Read Full Report
         </a>
       `;
@@ -198,8 +198,8 @@
           // Auto refresh every 10 minutes
           setInterval(loadCyberNews, 600000);
         </script>
-      </section>
-      <!-- <div class="proj-grid">
+
+        <!-- <div class="proj-grid">
           <article class="proj-card reveal">
             <div class="proj-badge">SIEM</div>
             <h3>SOC Automation & SIEM</h3>
@@ -218,7 +218,7 @@
             <a class="btn tiny" href="#" aria-disabled="true">Repo (private)</a>
           </article> -->
 
-      <!-- <article class="proj-card reveal">
+        <!-- <article class="proj-card reveal">
             <div class="proj-badge">Cloud</div>
             <h3>Cloud Hardening Blueprints</h3>
             <p>
@@ -252,9 +252,143 @@
               >Playbooks (coming)</a
             >
           </article> -->
-      <!-- </div> -->
-      <!-- </section> -->
+        <!-- </div> -->
+        <!-- </section> -->
+        <section
+          style="
+            color: rgb(255, 255, 255);
+            padding: 20px;
+            font-family:
+              Courier New,
+              monospace;
+          "
+        >
+          <h1 style="text-align: center; font-size: 2rem">
+            🔐 SOC Threat Intelligence Panel
+          </h1>
 
+          <!-- ===================== CVE FEED ===================== -->
+
+          <h2 style="margin-top: 10px">🛡️ Latest CVE Vulnerabilities</h2>
+          <div
+            id="cve-container"
+            style="display: flex; flex-direction: column; gap: 10px"
+          ></div>
+
+          <!-- ===================== SIEM LOG SIMULATOR ===================== -->
+
+          <h2 style="margin-top: 30px">📊 Live SIEM Log Monitor</h2>
+          <div
+            id="siem-logs"
+            style="
+              background: #0f1715;
+              height: 200px;
+              overflow-y: auto;
+              padding: 15px;
+              border-radius: 10px;
+              box-shadow: 0 0 5px #ffff;
+              font-size: 14px;
+            "
+          ></div>
+
+          <!-- ===================== INCIDENT RESPONSE ===================== -->
+
+          <h2 style="margin-top: 20px">🚨 Incident Response Workflow</h2>
+          <div
+            style="
+              background: #0f1715;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0 0 5px #ffff;
+              line-height: 1.8;
+            "
+          >
+            <p>1️⃣ <b>Detection:</b> SIEM identifies suspicious activity.</p>
+            <p>2️⃣ <b>Analysis:</b> SOC analyst validates alert severity.</p>
+            <p>3️⃣ <b>Containment:</b> Isolate affected system/IP.</p>
+            <p>4️⃣ <b>Eradication:</b> Remove malicious artifacts.</p>
+            <p>5️⃣ <b>Recovery:</b> Restore services & monitor.</p>
+            <p>6️⃣ <b>Lessons Learned:</b> Document & improve controls.</p>
+          </div>
+        </section>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            /* ================= CVE LIVE FEED ================= */
+
+            async function loadCVE() {
+              const container = document.getElementById("cve-container");
+              container.innerHTML = "Loading CVE data...";
+
+              try {
+                const response = await fetch(
+                  "https://api.rss2json.com/v1/api.json?rss_url=https://nvd.nist.gov/feeds/xml/cve/misc/nvd-rss.xml",
+                );
+
+                const data = await response.json();
+                container.innerHTML = "";
+
+                data.items.slice(0, 5).forEach((item) => {
+                  const div = document.createElement("div");
+
+                  div.style.background = "#0f1715";
+                  div.style.padding = "14px";
+                  div.style.borderRadius = "8px";
+                  div.style.boxShadow = "0 0 3px #ffff";
+
+                  div.innerHTML = `
+          <b>${item.title}</b><br>
+          <span style="font-size:14px; color:#94a3b8;">
+            ${new Date(item.pubDate).toLocaleString()}
+          </span><br>
+          <a href="${item.link}" target="_blank" style="color:#00ffcc;">
+            View Details →
+          </a>
+        `;
+
+                  container.appendChild(div);
+                });
+              } catch (error) {
+                container.innerHTML = "⚠️ Unable to load CVE feed.";
+              }
+            }
+
+            loadCVE();
+            setInterval(loadCVE, 900000); // refresh every 15 mins
+
+            /* ================= SIEM LOG SIMULATION ================= */
+
+            const logsContainer = document.getElementById("siem-logs");
+
+            const logTypes = [
+              "[CRITICAL] Ransomware activity detected from 185.234.x.x",
+              "[HIGH] Multiple failed login attempts from 103.45.x.x",
+              "[MEDIUM] Suspicious PowerShell execution",
+              "[LOW] Unusual outbound traffic detected",
+              "[CRITICAL] Possible data exfiltration attempt",
+              "[HIGH] Impossible travel login detected",
+              "[MEDIUM] Phishing URL accessed",
+            ];
+
+            function generateLog() {
+              const log = document.createElement("div");
+              log.innerText =
+                new Date().toLocaleTimeString() +
+                " - " +
+                logTypes[Math.floor(Math.random() * logTypes.length)];
+
+              logsContainer.appendChild(log);
+              logsContainer.scrollTop = logsContainer.scrollHeight;
+
+              if (logsContainer.children.length > 20) {
+                logsContainer.removeChild(logsContainer.firstChild);
+              }
+            }
+
+            setInterval(generateLog, 2000);
+          });
+        </script>
+      </section>
       <!-- //About section -->
       <section id="about" class="section">
         <h2 class="section-title">About</h2>
