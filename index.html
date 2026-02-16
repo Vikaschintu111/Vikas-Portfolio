@@ -64,9 +64,9 @@
           </button>
           <ul id="nav-menu">
             <li><a href="#home">Home</a></li>
+            <li><a href="#livenews">Live News</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#certs">Certifications</a></li>
             <li><a href="#education">Education</a></li>
@@ -109,53 +109,6 @@
         </div>
         <!-- ATTACK MAP -->
         <div class="hero-right">
-          <script>
-            const attackMap = document.querySelector(".attack-map");
-            function createAttack(type, severity) {
-              const circle = document.createElement("div");
-              circle.className = `attack-circle ${type} ${severity}`;
-
-              circle.dataset.type = type;
-              circle.dataset.severity = severity;
-
-              circle.style.top = Math.random() * 100 + "%";
-              circle.style.left = Math.random() * 100 + "%";
-
-              attackMap.appendChild(circle);
-              setTimeout(() => circle.remove(), 2500);
-            }
-
-            setInterval(() => {
-              const types = ["ddos", "malware", "phishing", "bruteforce"];
-              const severities = ["low", "medium", "high", "critical"];
-
-              createAttack(
-                types[Math.floor(Math.random() * types.length)],
-                severities[Math.floor(Math.random() * severities.length)],
-              );
-            }, 900);
-
-            // FILTER LOGIC
-            document.querySelectorAll(".filters select").forEach((select) => {
-              select.addEventListener("change", () => {
-                const type = document.getElementById("attackType").value;
-                const severity = document.getElementById("severity").value;
-
-                document
-                  .querySelectorAll(".attack-circle")
-                  .forEach((circle) => {
-                    const matchType =
-                      type === "all" || circle.dataset.type === type;
-                    const matchSeverity =
-                      severity === "all" ||
-                      circle.dataset.severity === severity;
-
-                    circle.style.display =
-                      matchType && matchSeverity ? "block" : "none";
-                  });
-              });
-            });
-          </script>
           <div class="about-media">
             <section id="cyber-map">
               <h2>Live Cyber Attack Map</h2>
@@ -174,11 +127,134 @@
               >
               </iframe>
             </section>
-
             <!-- <img src="" alt="Linux terminal showing profile info" /> -->
           </div>
         </div>
       </section>
+
+      <!-- LiveNews section  -->
+
+      <section id="livenews" class="section">
+        <h2 class="section-title">Live News</h2>
+        <section
+          id="live-cyber-news"
+          style="color: rgb(255, 0, 0); font-family: &quot;Courier New&quot;"
+        >
+          <h2
+            style="
+              text-align: center;
+              text-shadow: 0 0 1px;
+              color: rgb(255, 255, 255);
+              font-size: 2rem;
+            "
+          >
+            🚨 Live Cyber Attack The Hacker News Feed
+          </h2>
+
+          <div
+            id="news-container"
+            style="display: flex; flex-direction: column; gap: 15px"
+          ></div>
+        </section>
+
+        <script>
+          async function loadCyberNews() {
+            const container = document.getElementById("news-container");
+            container.innerHTML = "🔄 Fetching latest cyber threats...";
+
+            try {
+              const response = await fetch(
+                "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/TheHackersNews",
+              );
+
+              const data = await response.json();
+              container.innerHTML = "";
+
+              data.items.slice(0, 6).forEach((article) => {
+                const div = document.createElement("div");
+                div.style.background = "#0f1715";
+                div.style.padding = "20px";
+                div.style.borderRadius = "10px";
+                div.style.boxShadow = "0 0 5px #ffff";
+                div.innerHTML = `
+         <h4 style="margin:0; color: rgb(255,0,0); font-size:18px;">
+          ${article.title}
+        </h4>
+        <p style="font-size:16px; color: rgb(255,255,255);">
+          ${new Date(article.pubDate).toLocaleString()}
+        </p>
+        <a href="${article.link}" target="_blank"
+           style="color:#00ff00; font-size:18px; text-decoration:none;">
+           🔗 Read Full Report
+        </a>
+      `;
+                container.appendChild(div);
+              });
+            } catch (error) {
+              container.innerHTML = "⚠️ Unable to load live cyber news.";
+            }
+          }
+          loadCyberNews();
+          // Auto refresh every 10 minutes
+          setInterval(loadCyberNews, 600000);
+        </script>
+      </section>
+      <!-- <div class="proj-grid">
+          <article class="proj-card reveal">
+            <div class="proj-badge">SIEM</div>
+            <h3>SOC Automation & SIEM</h3>
+            <p>
+              Built a virtual SOC with Splunk/ELK: log onboarding, correlation
+              rules, dashboards, and SOAR playbooks to auto-triage common
+              alerts.
+            </p>
+            <ul class="tags">
+              <li>Splunk</li>
+              <li>ELK Stack</li>
+              <li>SOAR</li>
+              <li>Threat Intel</li>
+              <li>Python</li>
+            </ul>
+            <a class="btn tiny" href="#" aria-disabled="true">Repo (private)</a>
+          </article> -->
+
+      <!-- <article class="proj-card reveal">
+            <div class="proj-badge">Cloud</div>
+            <h3>Cloud Hardening Blueprints</h3>
+            <p>
+              Hardened AWS/Azure/GCP with CIS Benchmarks, IAM least privilege,
+              and detective controls; automated drift checks in CI.
+            </p>
+            <ul class="tags">
+              <li>AWS</li>
+              <li>Azure</li>
+              <li>GCP</li>
+              <li>CIS</li>
+            </ul>
+            <a class="btn tiny" href="#" aria-disabled="true"
+              >Docs (coming soon)</a
+            >
+          </article>
+
+          <article class="proj-card reveal">
+            <div class="proj-badge">IR</div>
+            <h3>Incident Response Drills</h3>
+            <p>
+              Designed tabletop and live-fire exercises targeting ransomware and
+              phishing; scripted log generation and alert simulation.
+            </p>
+            <ul class="tags">
+              <li>MITRE ATT&CK</li>
+              <li>Splunk</li>
+              <li>PowerShell</li>
+            </ul>
+            <a class="btn tiny" href="#" aria-disabled="true"
+              >Playbooks (coming)</a
+            >
+          </article> -->
+      <!-- </div> -->
+      <!-- </section> -->
+
       <!-- //About section -->
       <section id="about" class="section">
         <h2 class="section-title">About</h2>
@@ -313,65 +389,7 @@
           </ul> -->
         </article>
       </section>
-      <!-- projects section  -->
 
-      <section id="projects" class="section">
-        <h2 class="section-title">Projects</h2>
-        <div class="proj-grid">
-          <article class="proj-card reveal">
-            <div class="proj-badge">SIEM</div>
-            <h3>SOC Automation & SIEM</h3>
-            <p>
-              Built a virtual SOC with Splunk/ELK: log onboarding, correlation
-              rules, dashboards, and SOAR playbooks to auto-triage common
-              alerts.
-            </p>
-            <ul class="tags">
-              <li>Splunk</li>
-              <li>ELK Stack</li>
-              <li>SOAR</li>
-              <li>Threat Intel</li>
-              <li>Python</li>
-            </ul>
-            <a class="btn tiny" href="#" aria-disabled="true">Repo (private)</a>
-          </article>
-
-          <!-- <article class="proj-card reveal">
-            <div class="proj-badge">Cloud</div>
-            <h3>Cloud Hardening Blueprints</h3>
-            <p>
-              Hardened AWS/Azure/GCP with CIS Benchmarks, IAM least privilege,
-              and detective controls; automated drift checks in CI.
-            </p>
-            <ul class="tags">
-              <li>AWS</li>
-              <li>Azure</li>
-              <li>GCP</li>
-              <li>CIS</li>
-            </ul>
-            <a class="btn tiny" href="#" aria-disabled="true"
-              >Docs (coming soon)</a
-            >
-          </article>
-
-          <article class="proj-card reveal">
-            <div class="proj-badge">IR</div>
-            <h3>Incident Response Drills</h3>
-            <p>
-              Designed tabletop and live-fire exercises targeting ransomware and
-              phishing; scripted log generation and alert simulation.
-            </p>
-            <ul class="tags">
-              <li>MITRE ATT&CK</li>
-              <li>Splunk</li>
-              <li>PowerShell</li>
-            </ul>
-            <a class="btn tiny" href="#" aria-disabled="true"
-              >Playbooks (coming)</a
-            >
-          </article> -->
-        </div>
-      </section>
       <!-- skills section -->
       <section id="skills" class="section">
         <h2 class="section-title">Skills</h2>
@@ -391,8 +409,8 @@
           <span class="chip">Malware Analysis</span>
           <span class="chip">Incident Response</span>
           <span class="chip">Threat Hunting</span>
-          <span class="chip">SOAR Automation</span>
-          <span class="chip">CrowdStrike Falcon</span>
+          <span class="chip">SOAR </span>
+          <span class="chip">CrowdStrike </span>
           <span class="chip">SentinelOne</span>
           <span class="chip">Carbon Black</span>
           <span class="chip">AWS</span>
@@ -401,7 +419,7 @@
           <span class="chip">Docker</span>
           <span class="chip">Kubernetes</span>
           <span class="chip">Jenkins</span>
-          <span class="chip">Active Directory</span>
+          <span class="chip">A D</span>
           <span class="chip">Firewall Config</span>
           <span class="chip">Python</span>
           <span class="chip">SQL</span>
@@ -415,7 +433,7 @@
           <span class="chip">HIPAA</span>
           <span class="chip">PCI-DSS</span>
           <span class="chip">GDPR</span>
-          <span class="chip">NIST SP 800-61</span>
+          <span class="chip">NIST</span>
         </div>
       </section>
 
