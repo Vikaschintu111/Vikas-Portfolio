@@ -69,7 +69,7 @@ Open index.html in your browser
 
 📫 Contact
 
-📧 Email: vikas.splunk2@gmail.com
+📧 Email: maheshwaram@theworkmails.com
 
 💼 LinkedIn: https://linkedin.com/in/vikasreddy6668
 
