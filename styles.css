@@ -757,3 +757,62 @@ h4 {
     justify-self: end;
   }
 }
+/* Contact section */
+.contact-section {
+  text-align: center;
+}
+
+.contact-subtitle {
+  margin-bottom: 40px;
+  color: #aaa;
+}
+
+.contact-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-info {
+  flex: 1;
+  /* min-width: 250px; */
+}
+
+.info-card {
+  background: #111;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #1a1a1a;
+  color: white;
+}
+
+.contact-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #00ff99;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-form button:hover {
+  background: #00cc77;
+}
