@@ -64,7 +64,9 @@
           </button>
           <ul id="nav-menu">
             <li><a href="#home">Home</a></li>
-            <li><a href="#livenews">Live News</a></li>
+            <li>
+              <a href="#livenews">Live News & Work Flows</a>
+            </li>
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -135,7 +137,7 @@
       <!-- LiveNews section  -->
 
       <section id="livenews" class="section">
-        <h2 class="section-title">Live News</h2>
+        <h2 class="section-title">Live News & Cyber Attacks Work Flows</h2>
         <section
           id="live-cyber-news"
           style="color: rgb(255, 0, 0); font-family: &quot;Courier New&quot;"
@@ -253,64 +255,251 @@
             >
           </article> -->
         <!-- </div> -->
-        <!-- </section> -->
-        <section
-          style="
-            color: rgb(255, 255, 255);
-            padding: 20px;
-            font-family:
-              Courier New,
-              monospace;
-          "
-        >
-          <h1 style="text-align: center; font-size: 2rem">
-            🔐 SOC Threat Intelligence Panel
+        <!-- // SIEM LOG SIMULATION -->
+        <section>
+          <h1 style="text-align: center; margin-top: 50px">
+            🚨 SIEM Log Monitor
           </h1>
-
-          <!-- ===================== CVE FEED ===================== -->
-
-          <h2 style="margin-top: 10px">🛡️ Latest CVE Vulnerabilities</h2>
-          <div
-            id="cve-container"
-            style="display: flex; flex-direction: column; gap: 10px"
-          ></div>
-
-          <!-- ===================== SIEM LOG SIMULATOR ===================== -->
-
-          <h2 style="margin-top: 30px">📊 Live SIEM Log Monitor</h2>
           <div
             id="siem-logs"
             style="
               background: #0f1715;
-              height: 200px;
+              height: 300px;
               overflow-y: auto;
               padding: 15px;
               border-radius: 10px;
               box-shadow: 0 0 5px #ffff;
-              font-size: 14px;
+              font-size: 15px;
             "
           ></div>
+          <script>
+            const siemContainer = document.getElementById("siem-logs");
 
-          <!-- ===================== INCIDENT RESPONSE ===================== -->
+            const siemLogs = [
+              "🚨 Failed login attempt from 192.168.1.45",
+              "🦠 Malware detected on endpoint-PC01",
+              "🌐 Traffic spike detected - Possible DDoS",
+              "🔐 Multiple login failures - Brute Force suspected",
+              "👤 Large data transfer detected - Insider risk",
+              "🛡️ CVE-2025-1234 exploited attempt blocked",
+              "⚠️ Suspicious PowerShell execution detected",
+            ];
 
-          <h2 style="margin-top: 20px">🚨 Incident Response Workflow</h2>
+            let siemInterval;
+
+            function addLog() {
+              const log = document.createElement("div");
+              log.textContent =
+                siemLogs[Math.floor(Math.random() * siemLogs.length)];
+              log.style.marginBottom = "8px";
+              siemContainer.appendChild(log);
+
+              siemContainer.scrollTop = siemContainer.scrollHeight;
+
+              if (siemContainer.children.length > 30) {
+                siemContainer.removeChild(siemContainer.firstChild);
+              }
+            }
+
+            function startSIEM() {
+              siemInterval = setInterval(addLog, 1500);
+            }
+
+            function stopSIEM() {
+              clearInterval(siemInterval);
+            }
+
+            siemContainer.addEventListener("mouseenter", stopSIEM);
+            siemContainer.addEventListener("mouseleave", startSIEM);
+
+            startSIEM();
+          </script>
+        </section>
+        <!-- </section Soc Attack Workflows> -->
+
+        <h1 style="text-align: center; margin-top: 40px">
+          📊 Incident Response Flowchart
+        </h1>
+
+        <div
+          style="
+            background: #0f1715;
+            border-radius: 6px;
+            box-shadow: 0 0 6px #00ffcc;
+            overflow-x: auto;
+            padding: 8px;
+          "
+        >
+          <svg
+            width="100%"
+            viewBox="0 0 600 260"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <style>
+              .box {
+                fill: #121c19;
+                stroke: #00ffcc;
+                stroke-width: 1.5;
+                rx: 6;
+              }
+              .diamond {
+                fill: #121c19;
+                stroke: #00ffcc;
+                stroke-width: 1.5;
+              }
+              .text {
+                fill: #ffffff;
+                font-size: 10px;
+                font-family:
+                  Courier New,
+                  monospace;
+                text-anchor: middle;
+                dominant-baseline: middle;
+              }
+              .arrow {
+                stroke: #00ffcc;
+                stroke-width: 1.5;
+                marker-end: url(#arrowhead);
+              }
+            </style>
+
+            <defs>
+              <marker
+                id="arrowhead"
+                markerWidth="6"
+                markerHeight="5"
+                refX="6"
+                refY="2.5"
+                orient="auto"
+              >
+                <polygon points="0 0, 6 2.5, 0 5" fill="#00ffcc" />
+              </marker>
+            </defs>
+
+            <!-- Detection -->
+            <rect x="220" y="10" width="120" height="35" class="box" />
+            <text x="280" y="28" class="text">Detection</text>
+
+            <!-- Arrow Down -->
+            <line x1="280" y1="45" x2="280" y2="75" class="arrow" />
+
+            <!-- Decision -->
+            <polygon points="280,75 330,110 280,145 230,110" class="diamond" />
+            <text x="280" y="110" class="text">True Incident?</text>
+
+            <!-- YES -->
+            <line x1="330" y1="110" x2="400" y2="110" class="arrow" />
+            <text x="360" y="95" class="text">Yes</text>
+
+            <rect x="400" y="90" width="120" height="35" class="box" />
+            <text x="460" y="108" class="text">Containment</text>
+
+            <line x1="460" y1="125" x2="460" y2="155" class="arrow" />
+
+            <rect x="400" y="155" width="120" height="35" class="box" />
+            <text x="460" y="173" class="text">Eradication</text>
+
+            <line x1="460" y1="190" x2="460" y2="220" class="arrow" />
+
+            <rect x="400" y="220" width="120" height="35" class="box" />
+            <text x="460" y="238" class="text">Recovery</text>
+
+            <!-- NO -->
+            <line x1="230" y1="110" x2="160" y2="110" class="arrow" />
+            <text x="195" y="95" class="text">No</text>
+
+            <rect x="40" y="90" width="120" height="35" class="box" />
+            <text x="100" y="108" class="text">False Positive</text>
+          </svg>
+        </div>
+        <h1 style="text-align: center; margin-top: 30px">
+          🔄 Attack Response Flows
+        </h1>
+        <div
+          style="
+            overflow: hidden;
+            background: #0f1715;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #00ffcc;
+            padding: 10px;
+            position: relative;
+          "
+        >
           <div
+            id="socAutoScroll"
             style="
-              background: #0f1715;
-              padding: 20px;
-              border-radius: 10px;
-              box-shadow: 0 0 5px #ffff;
-              line-height: 1.8;
+              display: flex;
+              gap: 20px;
+              transition: transform 1s ease-in-out;
             "
           >
-            <p>1️⃣ <b>Detection:</b> SIEM identifies suspicious activity.</p>
-            <p>2️⃣ <b>Analysis:</b> SOC analyst validates alert severity.</p>
-            <p>3️⃣ <b>Containment:</b> Isolate affected system/IP.</p>
-            <p>4️⃣ <b>Eradication:</b> Remove malicious artifacts.</p>
-            <p>5️⃣ <b>Recovery:</b> Restore services & monitor.</p>
-            <p>6️⃣ <b>Lessons Learned:</b> Document & improve controls.</p>
+            <!-- PHISHING -->
+            <div style="min-width: 100%; color: #ffffff">
+              <h3 style="color: #00ffcc">🎣 Phishing Attack Workflow</h3>
+              <p>1️⃣ Detection: Suspicious email flagged.</p>
+              <p>2️⃣ Analysis: Review headers & malicious URLs.</p>
+              <p>3️⃣ Containment: Block sender domain.</p>
+              <p>4️⃣ Eradication: Reset compromised credentials.</p>
+              <p>5️⃣ Recovery: Enable MFA & monitor activity.</p>
+            </div>
+
+            <!-- BRUTE FORCE -->
+            <div style="min-width: 100%; color: #ffffff">
+              <h3 style="color: #00ffcc">🔐 Brute Force Attack Workflow</h3>
+              <p>1️⃣ Detection: Multiple failed logins detected.</p>
+              <p>2️⃣ Analysis: Identify source IP & geo-location.</p>
+              <p>3️⃣ Containment: Block IP & lock account.</p>
+              <p>4️⃣ Eradication: Enforce password policy.</p>
+              <p>5️⃣ Recovery: Reset credentials & enable MFA.</p>
+            </div>
+
+            <!-- MALWARE -->
+            <div style="min-width: 100%; color: #ffffff">
+              <h3 style="color: #00ffcc">🦠 Malware Attack Workflow</h3>
+              <p>1️⃣ Detection: EDR alert triggered.</p>
+              <p>2️⃣ Analysis: Check file hash & process tree.</p>
+              <p>3️⃣ Containment: Isolate infected endpoint.</p>
+              <p>4️⃣ Eradication: Remove malicious artifacts.</p>
+              <p>5️⃣ Recovery: Patch vulnerability & monitor logs.</p>
+            </div>
+
+            <!-- DDOS -->
+            <div style="min-width: 100%; color: #ffffff">
+              <h3 style="color: #00ffcc">🌐 DDoS Attack Workflow</h3>
+              <p>1️⃣ Detection: Traffic spike identified.</p>
+              <p>2️⃣ Analysis: Review traffic pattern & IP spread.</p>
+              <p>3️⃣ Containment: Enable rate limiting.</p>
+              <p>4️⃣ Eradication: Activate DDoS mitigation.</p>
+              <p>5️⃣ Recovery: Monitor service stability.</p>
+            </div>
+
+            <!-- INSIDER -->
+            <div style="min-width: 100%; color: #ffffff">
+              <h3 style="color: #00ffcc">👤 Insider Threat Workflow</h3>
+              <p>1️⃣ Detection: Unusual data transfer detected.</p>
+              <p>2️⃣ Analysis: Review access logs.</p>
+              <p>3️⃣ Containment: Disable suspicious account.</p>
+              <p>4️⃣ Eradication: Remove unauthorized privileges.</p>
+              <p>5️⃣ Recovery: HR review & continuous monitoring.</p>
+            </div>
           </div>
-        </section>
+        </div>
+
+        <script>
+          const slider = document.getElementById("socAutoScroll");
+          const slides = slider.children;
+          let index = 0;
+
+          function autoSlide() {
+            index++;
+            if (index >= slides.length) {
+              index = 0;
+            }
+            slider.style.transform = "translateX(-" + index * 100 + "%)";
+          }
+
+          setInterval(autoSlide, 3500); // Professional timing
+        </script>
 
         <script>
           document.addEventListener("DOMContentLoaded", function () {
@@ -318,6 +507,10 @@
 
             async function loadCVE() {
               const container = document.getElementById("cve-container");
+
+              // ✅ Prevent null error
+              if (!container) return;
+
               container.innerHTML = "Loading CVE data...";
 
               try {
@@ -337,25 +530,23 @@
                   div.style.boxShadow = "0 0 3px #ffff";
 
                   div.innerHTML = `
-          <b>${item.title}</b><br>
-          <span style="font-size:14px; color:#94a3b8;">
-            ${new Date(item.pubDate).toLocaleString()}
-          </span><br>
-          <a href="${item.link}" target="_blank" style="color:#00ffcc;">
-            View Details →
-          </a>
-        `;
+        <b>${item.title}</b><br>
+        <span style="font-size:14px; color:#94a3b8;">
+          ${new Date(item.pubDate).toLocaleString()}
+        </span><br>
+        <a href="${item.link}" target="_blank" style="color:#00ffcc;">
+          View Details →
+        </a>
+      `;
 
                   container.appendChild(div);
                 });
               } catch (error) {
-                container.innerHTML = "⚠️ Unable to load CVE feed.";
+                if (container) {
+                  container.innerHTML = "⚠️ Unable to load CVE feed.";
+                }
               }
             }
-
-            loadCVE();
-            setInterval(loadCVE, 900000); // refresh every 15 mins
-
             /* ================= SIEM LOG SIMULATION ================= */
 
             const logsContainer = document.getElementById("siem-logs");
