@@ -64,14 +64,15 @@
           </button>
           <ul id="nav-menu">
             <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li>
-              <a href="#livenews">News & Case Studies</a>
+              <a href="#case-studies">Case Studies</a>
             </li>
-            <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#certs">Certifications</a></li>
             <li><a href="#education">Education</a></li>
+            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
@@ -132,67 +133,51 @@
           </div>
         </div>
       </section>
+      <section id="projects" class="section">
+        <h2 class="section-title">Cybersecurity Projects</h2>
 
-      <!-- LiveNews section  -->
-      <section id="livenews" class="section">
-        <h2 class="section-title">Live News & Cyber Attacks Work Flows</h2>
-        <section
-          id="live-cyber-news"
-          style="color: rgb(255, 0, 0); font-family: &quot;Courier New&quot;"
-        >
-          <h2
-            style="
-              text-align: center;
-              text-shadow: 0 0 1px;
-              color: rgb(255, 255, 255);
-              font-size: 2rem;
-            "
-          >
-            🚨 Live Cyber Attack The Hacker News Feed
-          </h2>
-          <div
-            id="news-container"
-            style="display: flex; flex-direction: column; gap: 15px"
-          ></div>
-        </section>
-        <script>
-          async function loadCyberNews() {
-            const container = document.getElementById("news-container");
-            container.innerHTML = "🔄 Fetching latest cyber threats...";
-            try {
-              const response = await fetch(
-                "https://api.rss2json.com/v1/api.json?rss_url=https://feeds.feedburner.com/TheHackersNews",
-              );
-              const data = await response.json();
-              container.innerHTML = "";
-              data.items.slice(0, 6).forEach((article) => {
-                const div = document.createElement("div");
-                div.style.background = "#0f1715";
-                div.style.padding = "20px";
-                div.style.borderRadius = "10px";
-                div.style.boxShadow = "0 0 5px #ffff";
-                div.innerHTML = `
-         <h4 style="margin:0; color: rgb(255, 255, 255); font-size:18px;">
-          ${article.title}
-        </h4>
-        <p style="font-size:16px; color: rgb(255,255,255);">
-          ${new Date(article.pubDate).toLocaleString()}
-        </p>
-        <a href="${article.link}" target="_blank"
-           style="color:#00ffcc ; font-size:18px; text-decoration:none;">
-           🔗 Read Full Report
-        </a>
-      `;
-                container.appendChild(div);
-              });
-            } catch (error) {
-              container.innerHTML = "⚠️ Unable to load live cyber news.";
-            }
-          }
-          loadCyberNews();
-          // Auto refresh every 10 minutes
-          setInterval(loadCyberNews, 600000);
-        </script>
+        <div class="case-grid">
+          <div class="case-card">
+            <h3>SIEM Threat Detection Lab</h3>
+            <p>
+              Splunk and Sentinel based SOC detection system using MITRE ATT&CK.
+            </p>
+          </div>
+
+          <div class="case-card">
+            <h3>Vulnerability Automation</h3>
+            <p>
+              Python automation for vulnerability scanning and CVE
+              prioritization.
+            </p>
+          </div>
+
+          <div class="case-card">
+            <h3>Threat Intelligence Pipeline</h3>
+            <p>
+              IOC enrichment pipeline using OSINT sources and MITRE mapping.
+            </p>
+          </div>
+
+          <div class="case-card">
+            <h3>Cloud Security Monitoring</h3>
+            <p>AWS GuardDuty and Azure Sentinel threat monitoring lab.</p>
+          </div>
+
+          <div class="case-card">
+            <h3>Digital Forensics Investigation</h3>
+            <p>Memory and disk analysis using Volatility and Autopsy.</p>
+          </div>
+
+          <div class="case-card">
+            <h3>DevSecOps Security Pipeline</h3>
+            <p>Integrated SAST and DAST security testing in CI/CD.</p>
+          </div>
+        </div>
+      </section>
+      <!-- Case Studies section  -->
+      <section id="case-studies" class="section">
+        <h2 class="section-title">Case Studies</h2>
         <!-- // SIEM LOG SIMULATION -->
         <section>
           <h1 style="text-align: center; margin-top: 50px">
@@ -418,14 +403,14 @@
                   div.style.borderRadius = "8px";
                   div.style.boxShadow = "0 0 3px #ffff";
                   div.innerHTML = `
-        <b>${item.title}</b><br>
-        <span style="font-size:14px; color:#94a3b8;">
-          ${new Date(item.pubDate).toLocaleString()}
-        </span><br>
-        <a href="${item.link}" target="_blank" style="color:#00ffcc;">
-          View Details →
-        </a>
-      `;
+                  <b>${item.title}</b><br>
+                   <span style="font-size:14px; color:#94a3b8;">
+                   ${new Date(item.pubDate).toLocaleString()}
+                  </span><br>
+                   <a href="${item.link}" target="_blank" style="color:#00ffcc;">
+                     View Details →
+                      </a>
+                    `;
                   container.appendChild(div);
                 });
               } catch (error) {
@@ -618,6 +603,296 @@
           }
         </script>
       </section>
+      <!-- Experience section -->
+      <section id="experience" class="section">
+        <h2 class="section-title">Experience</h2>
+        <article class="exp-card reveal">
+          <header>
+            <h3>Centene Health, USA</h3>
+            <span class="time">June 2025 to Present</span>
+          </header>
+          <br />
+          <header>
+            <h3>KPIT, India</h3>
+            <span class="time">June 2020 to Sep 2023</span>
+          </header>
+        </article>
+      </section>
+      <!-- skills section -->
+      <section id="skills" class="section">
+        <h2 class="section-title">Security Skills</h2>
+
+        <div class="skills-wrapper">
+          <!-- SIEM -->
+          <div class="skills-group">
+            <h3>SIEM & Security Operations</h3>
+
+            <div class="skills-grid">
+              <div class="skill-card">
+                <img src="assets/logos/splunk.png" /><span>Splunk ES</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/qradar.png" /><span>IBM QRadar</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/sentinel.png" /><span
+                  >Microsoft Sentinel</span
+                >
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/elastic.png" /><span>Elastic SIEM</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/arcsight.png" /><span>ArcSight</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/cortex.png" /><span>Cortex XSOAR</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/TheHive.png" /><span>TheHive</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Threat Intelligence -->
+          <div class="skills-group">
+            <h3>Threat Intelligence & Analysis</h3>
+
+            <div class="skills-grid">
+              <div class="skill-card">
+                <img src="assets/logos/mitre.png" /><span>MITRE ATT&CK</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/virus.png" /><span>VirusTotal</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/PhishTank.png" /><span>PhishTank</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/misp.png" /><span>MISP</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/maltego.png" /><span>Maltego</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/Recon-ng.png" /><span>Recon-ng</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/any.png" /><span>Any.run</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vulnerability Management -->
+          <div class="skills-group">
+            <h3>Vulnerability & Risk Management</h3>
+
+            <div class="skills-grid">
+              <div class="skill-card">
+                <img src="assets/logos/nessus.png" /><span>Nessus</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/qualys.png" /><span>Qualys</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/openvas.png" /><span>OpenVAS</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/tenable.png" /><span>Tenable</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/burpsuite.png" /><span>Burp Suite</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/owasp.png" /><span>OWASP ZAP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DFIR -->
+          <div class="skills-group">
+            <h3>Digital Forensics & Malware Analysis</h3>
+
+            <div class="skills-grid">
+              <div class="skill-card">
+                <img src="assets/logos/autopsy.png" /><span>Autopsy</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/Volatility.png" /><span>Volatility</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/ftk.png" /><span>FTK</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/redline.png" /><span>Redline</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/Ghidra.png" /><span>Ghidra</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/sysinternals.png" /><span
+                  >Sysinternals</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Endpoint Security -->
+          <div class="skills-group">
+            <h3>Endpoint & Network Security</h3>
+
+            <div class="skills-grid">
+              <div class="skill-card">
+                <img src="assets/logos/crowdstrike.png" /><span
+                  >CrowdStrike Falcon</span
+                >
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/cabon.png" /><span>Carbon Black</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/cortex.png" /><span>Cortex XDR</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/ms.png" /><span>Microsoft Defender</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/wireshark.png" /><span>Wireshark</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/snort.png" /><span>Snort</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/zeek.png" /><span>Zeek</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/nmap.png" /><span>Nmap</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cloud Security -->
+          <div class="skills-group">
+            <h3>Cloud Security</h3>
+
+            <div class="skills-grid">
+              <div class="skill-card">
+                <img src="assets/logos/aws.png" /><span>AWS</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/azure.png" /><span>Azure</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/gcp.png" /><span>GCP</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Automation -->
+          <div class="skills-group">
+            <h3>Automation & DevSecOps</h3>
+
+            <div class="skills-grid">
+              <div class="skill-card">
+                <img src="assets/logos/python.png" /><span>Python</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/bash.png" /><span>Bash</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/sql.png" /><span>SQL</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/docker.png" /><span>Docker</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/kubernate.png" /><span>Kubernetes</span>
+              </div>
+              <div class="skill-card">
+                <img src="assets/logos/jenkins.png" /><span>Jenkins</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Certifications sections -->
+      <section id="certs" class="section">
+        <h2 class="section-title">Certifications</h2>
+        <div class="cert-grid">
+          <div class="cert-card">
+            <img src="assets/certs/cysa.png" alt="CompTIA CySA+ Certificate" />
+            <h3>CompTIA</h3>
+            <p>CompTIA CySA+</p>
+          </div>
+          <div class="cert-card">
+            <img
+              src="assets/certs/isc2cc.png"
+              alt="ISC2 Certified in Cybersecurity"
+            />
+            <h3>ISC2</h3>
+            <p>ISC2 Certified in Cybersecurity</p>
+          </div>
+          <div class="cert-card">
+            <img
+              src="assets/certs/splunk-es.png"
+              alt="Splunk Enterprise Security"
+            />
+            <h3>Splunk</h3>
+            <p>Splunk Enterprise Security</p>
+          </div>
+          <div class="cert-card">
+            <img src="assets/certs/cisco.png" alt="Cisco Network Academy" />
+            <h3>Cisco</h3>
+            <p>Cisco Network Academy</p>
+          </div>
+          <div class="cert-card">
+            <img src="assets/certs/paloalto.png" alt="Palo Alto Networks" />
+            <h3>Palo Alto Networks</h3>
+            <p>Cyber Practitioner & Security Operation Fundamentals</p>
+          </div>
+          <div class="cert-card">
+            <img
+              src="assets/certs/ibm-cyber.png"
+              alt="IBM Cybersecurity Fundamentals"
+            />
+            <h3>IBM</h3>
+            <p>IBM Cybersecurity Fundamentals</p>
+          </div>
+          <div class="cert-card">
+            <img src="assets/certs/eccouncil.png" alt="EC Council" />
+            <h3>SQL Injection Attacks</h3>
+            <p>EC-Council</p>
+          </div>
+          <div class="cert-card">
+            <img src="assets/certs/ctgia.png" alt="CTIGA" />
+            <h3>Certified Threat Intelligence & Governance Analyst</h3>
+            <p>CTIGA</p>
+          </div>
+        </div>
+      </section>
+      <section id="education" class="section">
+        <h2 class="section-title">Education</h2>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <h3>Concordia University Wisconsin · MS Computer Science</h3>
+            <p class="muted">Milwaukee, USA · Dec 2025</p>
+            <p>
+              Cybersecurity, Software Development, Oracle Database,
+              CyberDefence, Cyber Threat Hunting (CTH), Network Security,
+              Intelligence, Forensics, Threat Detection, Law & Policy, Cloud
+              Security, Social Engineering, Encryption.
+            </p>
+          </div>
+          <div class="edu-card">
+            <h3>VBIT · B Tech Electronics and Communication Engineering</h3>
+            <p class="muted">Hyderabad, India</p>
+            <p>
+              Computer Networking, Cybersecurity, Data Communications, VLSI
+              Design, Embedded Systems.
+            </p>
+            <!-- <p class="muted">May 2020</p> -->
+          </div>
+        </div>
+      </section>
       <!-- //About section -->
       <section id="about" class="section">
         <h2 class="section-title">About</h2>
@@ -646,109 +921,6 @@
               <div class="ring"></div>
               <div class="sweep"></div>
             </div>
-          </div>
-        </div>
-      </section>
-      <!-- Experience section -->
-      <section id="experience" class="section">
-        <h2 class="section-title">Experience</h2>
-        <article class="exp-card reveal">
-          <header>
-            <h3>Centene Health, USA</h3>
-            <span class="time">June 2025 to Present</span>
-          </header>
-          <br />
-          <header>
-            <h3>KPIT, India</h3>
-            <span class="time">June 2020 to Sep 2023</span>
-          </header>
-        </article>
-      </section>
-      <!-- skills section -->
-      <section id="skills" class="section">
-        <h2 class="section-title">Skills</h2>
-        <div class="chip-grid">
-          <span class="chip">Splunk</span>
-          <span class="chip">IBM QRadar</span>
-          <span class="chip">Microsoft Sentinel</span>
-          <span class="chip">ELK Stack</span>
-          <span class="chip">Wireshark</span>
-          <span class="chip">Nessus</span>
-          <span class="chip">Qualys</span>
-          <span class="chip">Metasploit</span>
-          <span class="chip">Cobalt Strike</span>
-          <span class="chip">MITRE ATT&CK</span>
-          <span class="chip">Cyber Kill Chain</span>
-          <span class="chip">Phishing Analysis</span>
-          <span class="chip">Malware Analysis</span>
-          <span class="chip">Incident Response</span>
-          <span class="chip">Threat Hunting</span>
-          <span class="chip">SOAR </span>
-          <span class="chip">CrowdStrike </span>
-          <span class="chip">SentinelOne</span>
-          <span class="chip">Carbon Black</span>
-          <span class="chip">AWS</span>
-          <span class="chip">Azure</span>
-          <span class="chip">GCP</span>
-          <span class="chip">Docker</span>
-          <span class="chip">Kubernetes</span>
-          <span class="chip">Jenkins</span>
-          <span class="chip">A D</span>
-          <span class="chip">Firewall Config</span>
-          <span class="chip">Python</span>
-          <span class="chip">SQL</span>
-          <span class="chip">PowerShell</span>
-          <span class="chip">Bash</span>
-          <span class="chip">JavaScript</span>
-          <span class="chip">NIST CSF</span>
-          <span class="chip">ISO 27001</span>
-          <span class="chip">CIS Benchmarks</span>
-          <span class="chip">MITRE ATT&CK</span>
-          <span class="chip">HIPAA</span>
-          <span class="chip">PCI-DSS</span>
-          <span class="chip">GDPR</span>
-          <span class="chip">NIST</span>
-        </div>
-      </section>
-      <!-- Certifications sections -->
-      <section id="certs" class="section">
-        <h2 class="section-title">Certifications</h2>
-        <ul class="cert-list">
-          <li>Certified in Cybersecurity, CC -> (ISC)²</li>
-          <li>SQL Injection Attacks -> (EC - COUNCIL)</li>
-          <li>CompTIA Security+ & CySA+ -> Inprogress</li>
-          <li>Certified Cyber Practitioner -> (Palto Alto Networks)</li>
-          <li>Security Operation Fundamentals -> (Palto Alto Networks)</li>
-          <li>Introduction of Cybersecurity -> (Cisco)</li>
-          <li>Cisco IT Essentials -> (Cisco)</li>
-          <li>Security Operations Center in Practice -> (IBM)</li>
-          <li>Cybersecurity Fundamentals -> (IBM)</li>
-          <li>Splunk Enterprise Security -> (Splunk)</li>
-          <li>Splunk Observability Cloud & SOAR, SOC Essentials -> (Splunk)</li>
-          <li>Detection Engineering -> (Splunk)</li>
-        </ul>
-      </section>
-      <section id="education" class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="edu-grid">
-          <div class="edu-card">
-            <h3>Concordia University Wisconsin · MS Computer Science</h3>
-            <p class="muted">Milwaukee, USA · Dec 2025</p>
-            <p>
-              Cybersecurity, Software Development, Oracle Database,
-              CyberDefence, Cyber Threat Hunting (CTH), Network Security,
-              Intelligence, Forensics, Threat Detection, Law & Policy, Cloud
-              Security, Social Engineering, Encryption.
-            </p>
-          </div>
-          <div class="edu-card">
-            <h3>VBIT · B Tech Electronics and Communication Engineering</h3>
-            <p class="muted">Hyderabad, India</p>
-            <p>
-              Computer Networking, Cybersecurity, Data Communications, VLSI
-              Design, Embedded Systems.
-            </p>
-            <!-- <p class="muted">May 2020</p> -->
           </div>
         </div>
       </section>
@@ -806,6 +978,7 @@
         </div>
       </section>
     </main>
+
     <!-- Footer sections -->
     <footer class="site-footer">
       <div class="container footer-inner">
